@@ -1,0 +1,196 @@
+/* Google Fonts — must be FIRST before any other @import */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* ─── CSS Variables ─────────────────────────────────────── */
+:root {
+  --bg-dark:      #06070f;
+  --accent:       #6366f1;
+  --accent-hover: #5558e8;
+  --text-muted:   #94a3b8;
+  --border:       rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Base reset ─────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: #f1f5f9;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 0% 0%,   rgba(99,102,241,0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(67,56,202,0.07) 0%, transparent 50%);
+  }
+
+  input, textarea, select { font-family: 'Outfit', 'Inter', sans-serif; }
+  input::placeholder, textarea::placeholder { color: rgba(148,163,184,0.55); }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+}
+
+/* ─── Page wrapper ───────────────────────────────────────── */
+.page-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* ─── Glass morphism ─────────────────────────────────────── */
+.glass {
+  background: rgba(15, 16, 26, 0.80);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.glass-nav {
+  background: rgba(6, 7, 15, 0.88);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+}
+
+/* ─── Progress bar ───────────────────────────────────────── */
+.progress-bar {
+  height: 0.35rem;
+  background: rgba(255,255,255,0.06);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+}
+
+/* ─── Glow orb ───────────────────────────────────────────── */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+/* ─── Section accent bar ─────────────────────────────────── */
+.section-accent {
+  width: 3px;
+  height: 1.25rem;
+  background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+/* ─── Input with leading icon ────────────────────────────── */
+.input-icon-wrap { position: relative; }
+
+.input-icon-wrap .input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.input-icon-wrap:focus-within .input-icon { color: #6366f1; }
+
+.input-icon-wrap input,
+.input-icon-wrap textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem 0.875rem 3rem;
+  outline: none;
+  color: #f1f5f9;
+  font-size: 0.9rem;
+  font-family: 'Outfit', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-icon-wrap textarea {
+  padding: 1rem 1rem 1rem 3rem;
+  resize: vertical;
+}
+
+.input-icon-wrap input:focus,
+.input-icon-wrap textarea:focus {
+  border-color: rgba(99,102,241,0.55);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+}
+
+/* ─── CV editor inputs ───────────────────────────────────── */
+.cv-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px dashed transparent;
+  outline: none;
+  font-family: 'Outfit', sans-serif;
+  color: inherit;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.cv-input:focus { border-bottom-color: #6366f1; }
+
+.cv-textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 0.75rem;
+  outline: none;
+  width: 100%;
+  color: inherit;
+  font-family: 'Outfit', sans-serif;
+  resize: vertical;
+  padding: 0.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cv-textarea:focus {
+  border-color: rgba(99,102,241,0.45);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.10);
+}
+
+/* ─── Filter items ───────────────────────────────────────── */
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  user-select: none;
+}
+.filter-item:hover { color: #f1f5f9; }
+
+.filter-check,
+.filter-radio {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  transition: border-color 0.2s, background 0.2s;
+}
+.filter-check  { border-radius: 0.3rem; }
+.filter-radio  { border-radius: 50%; }
+
+.filter-item:hover .filter-check,
+.filter-item:hover .filter-radio {
+  border-color: #6366f1;
+  background: rgba(99,102,241,0.10);
+}
